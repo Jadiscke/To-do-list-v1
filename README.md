@@ -1,4 +1,4 @@
-#TO-DO List v1.0 using EJS templates
+# TO-DO List v1.0 using EJS templates
 
 This is a project for studying the usage of EJS templates with Node.js and Express.js to make server-side render web apps
 
