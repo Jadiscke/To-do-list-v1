@@ -4,10 +4,11 @@ This is a project for studying the usage of EJS templates with Node.js and Expre
 
 ## Modules used and versions
 
-Node.js
-Express.js
-EJS
+### Node.js
+### Express.js
+### EJS
 
 ## Objective
 
 Learn more about EJS, Node.js and Express.js to make server-side web applications.
+Use EJS templates to make more dynamic web pages and web apps with less static code.
