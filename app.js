@@ -12,24 +12,37 @@ app.use(express.static('public'));
 // EJS Settings
 
 app.set('view engine', 'ejs');
+let newItems = ['test'];
 //Main
 app.get('/', function(req, res) {
+  //Get date
+  let today = new Date();
+  
 
-  var today = new Date();
-  var currentDay = today.getDay();
-  const daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frydat', 'Saturday'];
+  //set Locale options
+  let options = {
+    day: "2-digit",
+    weekday: "long",
+    year: "numeric",
+    month: "long",
 
-  //Verify if the currentDay is a Valid day of the Week
-  if (currentDay > 6 || currentDay < 0){
-    res.render('list',{
-      kindOfDay: 'ERROR: Day of the Week is not a Valid Value!'
-    })
-  }else{
-    res.render('list', {
-      kindOfDay: daysOfTheWeek[currentDay]
-    });
   }
+  let fullDate = today.toLocaleDateString("en-GB",options);
+  let dayOfTheWeek = fullDate.split(",")[0];
+  console.log(dayOfTheWeek);
+  console.log(newItems);
+  res.render('list', {
+    kindOfDay: fullDate,
+    items: newItems
+  });
 
+
+});
+
+app.post('/', function(req,res) {
+  newItems.push(req.body.newItem);
+  console.log(newItems);
+  res.redirect("/");
 });
 
 
