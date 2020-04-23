@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>To do list</title>
-  </head>
+<%- include('header'); -%>
+
   <body>
-    <h1> <%= kindOfDay %> </h1>
+    <section class="box" id="heading">
+      <h1> <%= listTitle %> </h1>
+    </section>
+    <div class="box">
+        <% items.forEach( function(i){ %>
+          <div class= "item">
+            <input type="checkbox">
+             <p><%= i %></p>
+           </div>
+        <% }); %>
 
-    <ul>
-      <% items.forEach( function(i){ %>
-        <li><%= i %></li>
-      <% }); %>
-    </ul>
-
-    <form class="" action="/" method="post">
-      <input type="text" name="newItem" placeholder="Insert a Task">
-      <button type="submit" name="button">Add</button>
-    </form>
+      <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="Insert a Task" autocomplete="off">
+        <button type="submit" name="button" value=<%= listTitle %> >+</button>
+      </form>
+    </div>
   </body>
-</html>
+
+<%- include('footer'); -%>

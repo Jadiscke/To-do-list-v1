@@ -7,17 +7,18 @@ const app = express();
 app.use(express.urlencoded({
   extended: true
 }));
-
+//Static Folder for CSS and Images
 app.use(express.static('public'));
 // EJS Settings
 
 app.set('view engine', 'ejs');
 let newItems = ['test'];
+let workItems = [];
 //Main
 app.get('/', function(req, res) {
   //Get date
   let today = new Date();
-  
+
 
   //set Locale options
   let options = {
@@ -32,18 +33,40 @@ app.get('/', function(req, res) {
   console.log(dayOfTheWeek);
   console.log(newItems);
   res.render('list', {
-    kindOfDay: fullDate,
+    listTitle: fullDate,
     items: newItems
   });
 
 
 });
 
-app.post('/', function(req,res) {
-  newItems.push(req.body.newItem);
-  console.log(newItems);
-  res.redirect("/");
+//Work Page
+app.get("/work", function(req,res){
+  res.render("list", {
+    listTitle: "Work",
+    items: workItems
+  });
 });
+
+// Post responses
+app.post('/', function(req,res) {
+  //Work
+  console.log(req.body);
+  if (req.body.button === 'Work'){
+    workItems.push(req.body.newItem);
+    console.log(workItems);
+    res.redirect("/work");
+
+  }else{ // Main List
+    newItems.push(req.body.newItem);
+    console.log(newItems);
+    res.redirect("/");
+  }
+
+});
+
+
+
 
 
 //Server Listen
