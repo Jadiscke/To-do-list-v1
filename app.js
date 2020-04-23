@@ -24,7 +24,6 @@ app.get('/', function(req, res) {
   let options = {
     day: "2-digit",
     weekday: "long",
-    year: "numeric",
     month: "long",
 
   }
@@ -47,6 +46,10 @@ app.get("/work", function(req,res){
     items: workItems
   });
 });
+
+app.get("/about", function(req,res) {
+  res.render("about");
+})
 
 // Post responses
 app.post('/', function(req,res) {
