@@ -5,16 +5,21 @@
     </section>
     <div class="box">
         <% items.forEach( function(i){ %>
-          <div class= "item">
-            <input type="checkbox">
-             <p><%= i %></p>
-           </div>
+          <form action="/delete" method="post">
+            <div class="item">
+              <input type="hidden" id="listName" name="listName" value="<%= listTitle %>">
+              <input name=checkBox type="checkbox" onchange="this.form.submit()" value="<%=i['_id']%>">
+               <p><%= i.name %></p>
+            </div>
+          </form>
         <% }); %>
 
       <form class="item" action="/" method="post">
         <input type="text" name="newItem" placeholder="Insert a Task" autocomplete="off">
-        <button type="submit" name="button" value=<%= listTitle %> >+</button>
+        <button type="submit" name="buttonSubmit" value="<%= listTitle %>">+</button>
       </form>
+
+
     </div>
 
 
