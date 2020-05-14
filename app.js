@@ -5,8 +5,10 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const _ = require('lodash');
+const dotenv = require('dotenv');
 // const date = require(__dirname + "/date.js"); //When you want to use date
 
+dotenv.config();
 app.use(express.urlencoded({
   extended: true
 }));
@@ -18,7 +20,8 @@ mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 mongoose.set('useUnifiedTopology', true);
-mongoose.connect("mongodb://localhost:27017/todolistDB");
+
+mongoose.connect(`mongodb://admin-vinicius:${process.env.ACCESS_DB}@cluster0-shard-00-00-fe285.mongodb.net:27017,cluster0-shard-00-01-fe285.mongodb.net:27017,cluster0-shard-00-02-fe285.mongodb.net:27017/todolistDB?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority`);
 
 itemSchema = new mongoose.Schema({
   name: String
